@@ -6,7 +6,7 @@ import night from './assets/images/night/night1.jpg';
 import React, { useState } from 'react';
 import { WeatherContainer } from './WeatherContainer';
 export default function App() {
-  const [value, setvalue] = useState('');
+  const [value, setvalue] = useState('Kozhikode');
   const [temp, settemp] = useState('0');
   const [windspeed, setwindspeed] = useState('0');
   const [humidity, sethumidity] = useState('0');
@@ -15,15 +15,21 @@ export default function App() {
   const [query, setquery] = useState(false);
   const [feelslike, setfeelslike] = useState('');
   const [location, setlocation] = useState('Kozhikode');
+  const [load, setload] = useState('true');
+  const [id, setid] = useState('800');
   const daylight = [sunny, evening, night];
   let time = new Date().getHours();
+  let dayicon = '';
   let back = '';
   if (time <= 15) {
     back = daylight[0];
+    dayicon = 'morning';
   } else if ((time >= 16) & (time < 20)) {
     back = daylight[1];
+    dayicon = 'evening';
   } else {
     back = daylight[2];
+    dayicon = 'night';
   }
   console.log(back, time);
   const backroundstyles = {
@@ -52,6 +58,9 @@ export default function App() {
           setquery={setquery}
           setfeelslike={setfeelslike}
           setlocation={setlocation}
+          load={load}
+          setload={setload}
+          setid={setid}
         />
         <WeatherContainer
           value={value}
@@ -70,6 +79,9 @@ export default function App() {
           humidity={humidity}
           feelslike={feelslike}
           location={location}
+          dayicon={dayicon}
+          setid={setid}
+          id={id}
         />
       </div>
     </div>

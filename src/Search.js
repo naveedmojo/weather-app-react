@@ -13,12 +13,15 @@ export const Search = ({
   setquery,
   setfeelslike,
   setlocation,
+  load,
+  setload,
+  setid,
 }) => {
   let path = `https://api.openweathermap.org/data/2.5/weather?q=${value}`;
   let apikey = `&appid=c38c4284f841f1515d0b2a261447e5c5`;
   let url = path + apikey;
   useEffect(() => {
-    if (query) {
+    if (query || load) {
       const fetchdata = async () => {
         try {
           const res = await fetch(url);
@@ -37,6 +40,7 @@ export const Search = ({
             setpressure(body.main.pressure);
             setfeelslike(body.weather[0].description);
             setlocation(body.name);
+            setid(body.weather[0].id);
           } else {
             throw new Error('Bad response');
           }
@@ -45,6 +49,7 @@ export const Search = ({
         } finally {
           setvalue('');
           setquery(false);
+          setload(false);
         }
       };
       fetchdata();

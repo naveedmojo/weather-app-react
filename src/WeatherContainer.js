@@ -6,6 +6,16 @@ import icon1 from './assets/icons/icon1.png';
 import icon2 from './assets/icons/icon2.png';
 import icon3 from './assets/icons/icon3.png';
 import icon4 from './assets/icons/icon4.png';
+import clearsky from './assets/weathericons/clearsky.png';
+import cloudy from './assets/weathericons/cloudy.png';
+import drizzle from './assets/weathericons/dust.png';
+import dust from './assets/weathericons/dust.png';
+import haze from './assets/weathericons/haze.png';
+import night from './assets/weathericons/night.png';
+import nightrain from './assets/weathericons/nightrain.png';
+import snow from './assets/weathericons/snow.png';
+import storm from './assets/weathericons/storm.png';
+import sunnyrain from './assets/weathericons/sunnyrain.png';
 
 export const WeatherContainer = ({
   value,
@@ -24,7 +34,11 @@ export const WeatherContainer = ({
   humidity,
   feelslike,
   location,
+  dayicon,
+  setid,
+  id,
 }) => {
+  let icon = clearsky;
   var days = [
     'Sunday',
     'Monday',
@@ -48,12 +62,37 @@ export const WeatherContainer = ({
     'November',
     'December',
   ];
+  console.log(dayicon, id);
+  if ((dayicon === 'morning') & ((id >= 800) & (id <= 802))) {
+    icon = clearsky;
+  } else if ((dayicon === 'evening') & ((id >= 800) & (id <= 802))) {
+    icon = haze;
+  } else if ((dayicon === 'night') & (id >= 800) & (id <= 802)) {
+    icon = night;
+  } else if ((dayicon === 'morning') & ((id >= 500) & (id < 600))) {
+    icon = sunnyrain;
+  } else if ((dayicon === 'night') & ((id >= 500) & (id < 600))) {
+    icon = nightrain;
+  } else if ((id >= 300) & (id <= 400)) {
+    icon = drizzle;
+  } else if ((id >= 200) & (id < 300)) {
+    icon = drizzle;
+  } else if ((id >= 600) & (id < 700)) {
+    icon = snow;
+  } else if ((id >= 700) & (id < 800)) {
+    icon = snow;
+  } else if (id > 802) {
+    icon = cloudy;
+  }
+
+  console.log(dayicon);
   var now = new Date();
   var day = days[now.getDay()];
   var month = months[now.getMonth()];
   var date = now.getDate();
   var hours = now.getHours();
   var minutes = now.getMinutes();
+
   return (
     <div className='weathercontainer'>
       <div className='locationcontainer'>
@@ -66,10 +105,12 @@ export const WeatherContainer = ({
         </p>
       </div>
       <div className='weathericoncontainer'>
-        <img src={icon1} alt='icon'></img>
+        <div className='currentweathercontainer'>
+          <img className='currentweather' src={icon} alt='icon'></img>
+        </div>
         <div className='temperature'>{Math.floor(temp - 273.15)}</div>
         <FontAwesomeIcon icon={faCircleDot} className='temperaturering' />
-        <div className='feelslike'>Looks like {feelslike} </div>
+        <div className='feelslike'>Looks like {feelslike}</div>
       </div>
       <div className='weatheradditionalinfo'>
         <div className='weatherinfocard'>

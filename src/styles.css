@@ -13,7 +13,7 @@ root {
 }
 
 .appcontainer {
-  background: rgba(0, 0, 0, 0.275);
+  background: rgba(0, 0, 0, 0.3);
   height: 100vh;
   margin: 0 auto;
   position: relative;
@@ -92,14 +92,14 @@ root {
 }
 .weathericoncontainer {
   display: flex;
-  margin-top: 15px;
+  margin-top: 12px;
   margin-left: 5px;
 }
-
 .temperature {
   color: var(--weathertext);
-  font-size: 3em;
-  margin-left: 0.275em;
+  font-size: 3.3em;
+  text-align: center;
+  margin-top: 0.1em;
 }
 .temperaturering {
   font-size: 11px;
@@ -145,4 +145,14 @@ root {
   margin: 0.275em;
   color: var(--weathertext);
   font-size: 18px;
+}
+.currentweathercontainer {
+  width: 80px;
+  height: 80px;
+
+  position: relative;
+}
+.currentweathercontainer img {
+  position: absolute;
+  width: 100%;
 }
