@@ -62,7 +62,7 @@ export const WeatherContainer = ({
     'November',
     'December',
   ];
-  console.log(dayicon, id);
+  console.log(dayicon, id, drivingdifficulty);
   if ((dayicon === 'morning') & ((id >= 800) & (id <= 802))) {
     icon = clearsky;
   } else if ((dayicon === 'evening') & ((id >= 800) & (id <= 802))) {
@@ -78,7 +78,7 @@ export const WeatherContainer = ({
   } else if ((id >= 200) & (id < 300)) {
     icon = drizzle;
   } else if ((id >= 600) & (id < 700)) {
-    icon = snow;
+    icon = storm;
   } else if ((id >= 700) & (id < 800)) {
     icon = snow;
   } else if (id > 802) {
@@ -131,8 +131,8 @@ export const WeatherContainer = ({
         </div>
         <div className='weatherinfocard'>
           <img src={icon3} alt='Driving'></img>
-          <h1>Driving</h1>
-          <p> Safe </p>
+          <h1>Visibility</h1>
+          <p> {drivingdifficulty} meters </p>
         </div>
       </div>
     </div>

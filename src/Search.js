@@ -32,9 +32,9 @@ export const Search = ({
             console.log(res);
             const body = await res.json();
             console.log(body);
-            console.log(body.name);
+            console.log(body.visibility);
             settemp(body.main.temp);
-            setdrivingdifficulty(body.sys.visibility);
+            setdrivingdifficulty(body.visibility);
             setwindspeed(body.wind.speed);
             sethumidity(body.main.humidity);
             setpressure(body.main.pressure);
